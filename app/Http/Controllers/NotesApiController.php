@@ -7,44 +7,19 @@ use Illuminate\Http\Request;
 
 class NotesApiController extends Controller
 {
-    public function index(){
-        return Note::all();
+    public function show(){
+        if($user->is(auth()->user())){
+            return Storage::download('notes/' . $user->id . 'notes.pdf'); 
+        }
+        abort(401);
     }
 
-    public function store(){
-        request()->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'file' => 'required',
+    public function store(Request $request){
+        $request->validate([
+            'note' =>'file|mimetypes:application/pdf|max:4000'
         ]);
-        return Note::create([
-            'name' => request('name'),
-            'description' => request('description'),
-            'file' => request('file'),
-        ]);
-    }
+        $request->file('note')->store('notes/' . auth()->user()->id . '/note.pdf');
 
-    public function update(Note $note){
-        request()->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'file' => 'required',
-        ]);
-        $success=$note->update([
-            'name' => request('name'),
-            'description' => request('description'),
-            'file' => request('file'),
-        ]);
-        return [
-            'success'=>$success
-        ];
+        return back()->with('message', 'Note uploaded successfully');
     }
-
-    public function destroy(Note $note){
-        $success=$note->delete();
-        return [
-            'success'=> $success
-        ];
-    }
-    
 }

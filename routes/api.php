@@ -20,7 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/notes', [NotesApiController::class, 'index']);
-Route::post('/notes', [NotesApiController::class, 'store']);
-Route::put('/notes/{note}', [NotesApiController::class, 'update']);
-Route::delete('/notes/{note}', [NotesApiController::class, 'destroy']);
+Route::get('/notes/{user}', [NotesApiController::class, 'show'])->middleware('auth')->name('users.notes.show');
+Route::post('/notes', [NotesApiController::class, 'store'])->middleware('auth')->name('users.notes.store');
