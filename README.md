@@ -10,13 +10,7 @@ Explain how the reader accesses your code. Include a step by step approach.
 
 ### Timeframe & Working Team (Solo/Pair/Group)
 
-Share the timeframe given for the project and whether you worked independently, in a pair, or in a group.
-
-If you worked in a pair or group, include the names of the people you collaborated with. As a bonus, you can also provide links to their GitHub repo.
-
 ## Technologies Used
-
-List every technology you used to complete the project. This can be in one long list, or broken down into categories (Back End, Front End, Development Tools).
 
 ## Brief
 
@@ -24,10 +18,10 @@ List every technology you used to complete the project. This can be in one long 
 
 Using Laravel as your framework, write an API that allows users to authenticate, upload a PDF document, and see a list of their (but no other user’s) documents. This API should be RESTful. Ideally, it’s fast and secure, but it doesn’t need to be perfect. If there are areas that your solution hasn’t had time to address, annotate them for future development.
 
--   [ ] Authenticate, upload a PDF document
--   [ ] See a list of their documents (no other user’s)
--   [ ] RESTful
--   [ ] Fast and secure
+-   [ X ] Authenticate user, upload a PDF document
+-   [ X ] See a list of their documents (no other user’s)
+-   [ X ] RESTful
+-   [ X ] Fast and secure
 -   [ ] Testing
 -   [ ] Documentation
 
@@ -46,11 +40,6 @@ create: form to upload a file
 store: post to store listing in db
 
 # Endpoints
-
-All note: GET /api/notes
-Create a note: POST /api/notes
-Update a note: PUT /api/notes/{id}
-Delete a note: DELETE /api/notes/{id}
 
 ## Build/Code Process
 
