@@ -19,6 +19,3 @@ use App\Http\Controllers\NotesApiController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::get('/notes/{user}', [NotesApiController::class, 'show'])->middleware('auth')->name('users.notes.show');
-Route::post('/notes', [NotesApiController::class, 'store'])->middleware('auth')->name('users.notes.store');

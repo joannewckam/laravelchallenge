@@ -1,6 +1,7 @@
 <?php
-use App\Models\Note;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NotesApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [NotesApiController::class, 'index'])->middleware('auth')->name('index');
+Route::get('/upload', [NotesApiController::class, 'upload'])->middleware('auth')->name('upload');
+Route::post('/note', [NotesApiController::class, 'store'])->middleware('auth');
+
+
+require __DIR__.'/auth.php';

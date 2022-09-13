@@ -2,24 +2,32 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Note;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class NotesApiController extends Controller
 {
-    public function show(){
-        if($user->is(auth()->user())){
-            return Storage::download('notes/' . $user->id . 'notes.pdf'); 
-        }
-        abort(401);
+    public function index(){
+       $notes = Note::all()->where('user_id', auth()->user()->id);
+       return view('index')->with('notes', $notes);
     }
-
+    public function upload(){
+        return view('upload');
+    }
     public function store(Request $request){
-        $request->validate([
-            'note' =>'file|mimetypes:application/pdf|max:4000'
-        ]);
-        $request->file('note')->store('notes/' . auth()->user()->id . '/note.pdf');
-
-        return back()->with('message', 'Note uploaded successfully');
+            $formFields = $request->validate([
+                'name' => 'required',
+                'file' => 'required'
+            ]);
+            if ($request->hasFile('file')){
+                $formFields['file'] = $request->file('file')->store('files', 'public');
+            }
+            $formFields['user_id'] = Auth::user()->id;
+            Note::create($formFields);
+            return redirect('/');
+        }
     }
-}
