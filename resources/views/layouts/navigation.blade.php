@@ -12,8 +12,8 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('upload')" :active="request()->routeIs('upload')">
-                        {{ __('Upload a note') }}
+                    <x-nav-link :href="route('create')" :active="request()->routeIs('create')">
+                        {{ __('Create a note') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -63,8 +63,8 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('upload')" :active="request()->routeIs('upload')">
-                {{ __('Upload') }}
+            <x-responsive-nav-link :href="route('create')" :active="request()->routeIs('create')">
+                {{ __('Create a note') }}
             </x-responsive-nav-link>
         </div>
 

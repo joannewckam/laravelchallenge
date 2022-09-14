@@ -11,13 +11,16 @@ use Illuminate\Support\Facades\Storage;
 
 class NotesApiController extends Controller
 {
+    //show all notes from authorized user
     public function index(){
        $notes = Note::all()->where('user_id', auth()->user()->id);
        return view('index')->with('notes', $notes);
     }
-    public function upload(){
-        return view('upload');
+    //show create note form
+    public function create(){
+        return view('create');
     }
+    //Store note
     public function store(Request $request){
             $formFields = $request->validate([
                 'name' => 'required',

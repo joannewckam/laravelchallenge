@@ -15,7 +15,7 @@ use App\Http\Controllers\NotesApiController;
 */
 
 Route::get('/', [NotesApiController::class, 'index'])->middleware('auth')->name('index');
-Route::get('/upload', [NotesApiController::class, 'upload'])->middleware('auth')->name('upload');
+Route::get('/notes/create', [NotesApiController::class, 'create'])->middleware('auth')->name('create');
 Route::post('/note', [NotesApiController::class, 'store'])->middleware('auth');
 
 
