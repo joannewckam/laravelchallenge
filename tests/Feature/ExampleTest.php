@@ -17,30 +17,29 @@ class ExampleTest extends TestCase
      * @return void
      */
 
-    // public function test_interacting_with_the_session(){
-    //     $response = $this->withSession(['banned' => false])->get('/')->assertStatus(200);
-    // }
+    public function test_index_is_rendered(){
 
-    // public function test_user_authentication()
-    // {
-    //     $user = User::factory()->create();
-    //     $response = $this->actingAs($user)->withSession(['banned'=>false])->get('/')->assertStatus(200);
-    // }
-
-    public function test_file_upload(){
-
-        Storage::fake('local');
         $user = User::factory()->create();
-        $this->actingAs($user);
+ 
+        $response = $this->actingAs($user)
+                         ->withSession(['banned' => false])
+                         ->get('/');
+        
+        $response->assertStatus(200);
+    }
 
-        Storage::assertMissing('note/' . $user->id . '/note.pdf');
-
-        $this->post(route('users.note.store'), [
-            'note' => UploadedFile::fake()->create('hello.pdf', 2000, 'application/pdf')
-        ])->assertRedirect();
-
-        Storage::assertExists('note/' . $user->id . '/note.pdf');
-
-        // $this->get(route('users.note.show', $user->id))->assertStatus(200)->assertDownload('note.pdf');
+    public function validate_formFields_to_post()
+    {
+        $user = User::factory()->create();
+ 
+        $response = $this->actingAs($user)
+                         ->withSession(['banned' => false])
+                         ->post('/note',[
+                            'user_id' => auth()->id,
+                            'name' => 'name',
+                            'file' => 'file',
+                         ]);
+        $this->assertSuccessful();
+        $response->assertRedirect(RouteServiceProvider::HOME);
     }
 }

@@ -21,7 +21,7 @@ class NotesApiController extends Controller
     public function store(Request $request){
             $formFields = $request->validate([
                 'name' => 'required',
-                'file' => 'required'
+                'file' => 'required|mimes:pdf'
             ]);
             if ($request->hasFile('file')){
                 $formFields['file'] = $request->file('file')->store('files', 'public');
