@@ -8,9 +8,9 @@ lendeskchallenge.test
 
 ## Getting Started/Code Installation
 
-Navigate to lendeskchallenge.test
-Register a new user
-Create a new note and upload a pdf file
+-   Navigate to lendeskchallenge.test
+-   Register a new user
+-   Create a new note and upload a pdf file
 
 ## Technologies Used
 
@@ -38,9 +38,10 @@ Using Laravel as your framework, write an API that allows users to authenticate,
 -   Able to login as user
 
 Routes:
-index: list of files
-create: form to upload a file
-store: post to store listing in storage
+
+-   index: list of files
+-   create: form to upload a file
+-   store: post to store listing in storage
 
 ## Build/Code Process
 
@@ -77,5 +78,5 @@ My approach to the challenge is creating a dashboard for a user to upload their 
 
 ## Future Improvements
 
--   Full CRUD operations - Update and Delete\
+-   Full CRUD operations - Update and Delete
 -   effective testing before coding each feature
